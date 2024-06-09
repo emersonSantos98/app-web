@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/RapidFunnels.iml" filepath="$PROJECT_DIR$/.idea/RapidFunnels.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../templates/Template-verificado/vuexy-admin-v9.5.0/vue-version/vuexy-vuetify-vue3/typescript-version/full-version/.idea/full-version.iml" filepath="$PROJECT_DIR$/../templates/Template-verificado/vuexy-admin-v9.5.0/vue-version/vuexy-vuetify-vue3/typescript-version/full-version/.idea/full-version.iml" />
+    </modules>
+  </component>
+</project>
