@@ -273,3 +273,10 @@ function deletedPermission(permission: IPermission) {
     />
   </VRow>
 </template>
+
+<route lang="yaml">
+meta:
+  action: read
+  subject: Auth
+  auth: true
+</route>

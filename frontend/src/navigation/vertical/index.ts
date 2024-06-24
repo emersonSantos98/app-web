@@ -1,19 +1,14 @@
 import home from './home'
 import secondPage from './secondPage'
-import accessControl from './accessControl'
+import calculator from './calculator'
 import rolePermissions from './role&Permissions'
 import profile from './profile'
-import templateEmail from './templateEmail'
-import template from './template'
-
 import type { VerticalNavItems } from '@/@layouts/types'
 
 export default [
   ...home,
   ...secondPage,
-  ...accessControl,
+  ...calculator,
   ...rolePermissions,
   ...profile,
-  ...templateEmail,
-  ...template,
 ] as VerticalNavItems

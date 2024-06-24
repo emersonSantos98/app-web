@@ -7,7 +7,6 @@ import type { ILoginStore } from '@/views/login/login.store'
 import { LoginStore } from '@/views/login/login.store'
 import type { AppAbility } from '@/plugins/casl/AppAbility'
 import type { IFormLoginDTO } from '@/views/login/models/types'
-import {IPostAuthLoginResponse} from "@/api/Auth/models/types";
 
 export default class AuthService {
   public readonly client: IAuthClient

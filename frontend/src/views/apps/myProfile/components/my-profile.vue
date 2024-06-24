@@ -46,7 +46,6 @@ watchEffect(() => {
 <template>
   <VRow>
     <VCol
-
       cols="12"
     >
       <VCard

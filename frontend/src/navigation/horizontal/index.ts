@@ -1,14 +1,15 @@
-import type { HorizontalNavItems } from '@layouts/types'
+import home from './home'
+import secondPage from './secondPage'
+import calculator from './calculator'
+import rolePermissions from './role&Permissions'
+import profile from './profile'
+
+import type { VerticalNavItems } from '@/@layouts/types'
 
 export default [
-  {
-    title: 'Home',
-    to: { name: 'index' },
-    icon: { icon: 'tabler-smart-home' },
-  },
-  {
-    title: 'Second page',
-    to: { name: 'second-page' },
-    icon: { icon: 'tabler-file' },
-  },
-] as HorizontalNavItems
+  ...home,
+  ...secondPage,
+  ...calculator,
+  ...rolePermissions,
+  ...profile,
+] as VerticalNavItems

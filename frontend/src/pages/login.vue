@@ -194,6 +194,7 @@ onMounted(() => {
 
 <style lang="scss" src="src/views/login/login.scss" scoped></style>
 
+
 <route lang="yaml">
 name: login
 meta:
