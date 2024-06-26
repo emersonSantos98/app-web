@@ -6,14 +6,14 @@ export default [
       {
         title: 'Roles',
         to: 'permission-roles-roles',
-        action: 'read',
-        subject: 'Auth',
+        action: 'manage',
+        subject: 'all',
       },
       {
         title: 'Permissions',
         to: 'permission-roles-permissions',
-        action: 'read',
-        subject: 'Auth',
+        action: 'manage',
+        subject: 'all',
       },
     ],
   },

@@ -17,8 +17,8 @@ const router = createRouter({
 
         if (userRole === 'admin')
           return { name: 'index' }
-        if (userRole === 'cliente')
-          return { name: 'access-control' }
+        if (userRole === 'user')
+          return { name: 'second-page' }
 
         return { name: 'login', query: to.query }
       },
