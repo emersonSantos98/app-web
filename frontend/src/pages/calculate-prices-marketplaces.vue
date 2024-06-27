@@ -16,7 +16,7 @@ interface WidgetData {
   color: string
   porcentagem: string
 }
-
+const isExportCalcDialogVisible = ref(false)
 const refForm = ref<VForm>()
 const programaFreteGratis = ref('sim')
 const comissao = ref(14)
@@ -211,7 +211,7 @@ function calcularValores(): void {
         </VRow>
       </VCardText>
     </VCard>
-
+    <ExportCalculation v-model:isDialogVisible="isExportCalcDialogVisible" />
     <!-- 👉 products -->
     <VForm
       ref="refForm"
@@ -365,8 +365,9 @@ function calcularValores(): void {
             variant="tonal"
             color="secondary"
             prepend-icon="tabler-upload"
+            @click="isExportCalcDialogVisible = !isExportCalcDialogVisible"
           >
-            Export
+            Exportar Calculo
           </VBtn>
 
           <VBtn

@@ -64,4 +64,9 @@ const authUser  = () => {
 </VCol>
   </div>
 </template>
-
+<route lang="yaml">
+meta:
+  action: read
+  subject: Auth
+  auth: true
+</route>
