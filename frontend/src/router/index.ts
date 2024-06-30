@@ -18,9 +18,7 @@ const router = createRouter({
         if (userRole === 'admin')
           return { name: 'index' }
         if (userRole === 'user')
-          console.log('user', userRole)
-
-        return { name: 'second-page' }
+          return { name: 'second-page' }
 
         return { name: 'login', query: to.query }
       },
@@ -41,7 +39,6 @@ router.beforeEach(async (to, from, next) => {
       return next({ name: 'login' })
 
     // Verifique se o usuário tem permissão para acessar a rota
-    console.log('to', to)
     if (!canNavigate(to))
       return next({ name: 'not-authorized' })
   }

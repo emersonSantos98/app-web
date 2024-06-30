@@ -43,7 +43,7 @@ declare module '@vue/runtime-core' {
     EditAddressDialog: typeof import('./src/@core/components/EditAddressDialog.vue')['default']
     EnableOneTimePasswordDialog: typeof import('./src/@core/components/EnableOneTimePasswordDialog.vue')['default']
     ErrorHeader: typeof import('./src/@core/components/ErrorHeader.vue')['default']
-    ExportCalculation: typeof import('./src/components/dialogs/ExportCalculation.vue')['default']
+    ExportCalculation: typeof import('@/views/apps/calculator/components/dialogs/ExportCalculation.vue')['default']
     I18n: typeof import('./src/@core/components/I18n.vue')['default']
     Notifications: typeof import('./src/@core/components/Notifications.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

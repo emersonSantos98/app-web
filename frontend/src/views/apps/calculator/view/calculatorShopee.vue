@@ -391,9 +391,4 @@ function calcularValores(): void {
 }
 </style>
 
-<route lang="yaml">
-meta:
-  action: read
-  subject: Auth
-  auth: true
-</route>
+
