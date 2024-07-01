@@ -12,5 +12,4 @@ import CalculatorShopee from '@/views/apps/calculator/view/calculatorShopee.vue'
 meta:
   action: read
   subject: Auth
-  auth: true
 </route>
