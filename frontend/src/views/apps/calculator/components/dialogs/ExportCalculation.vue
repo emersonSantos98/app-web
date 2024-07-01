@@ -1,86 +1,55 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<Props>(), {
-  calcDetails: () => ({
-    name: '',
-    description: '',
-    lastName: '',
-    email: '',
-    password: '',
-    age: 0,
-    interest: [],
-  }),
+import { defineEmits, defineProps, ref } from 'vue'
+import { useCalculateMarketPlacesStore } from '../../CalculateMarketPlacesStore'
+
+const props = defineProps({
+  isDialogVisible: {
+    type: Boolean,
+    default: false,
+  },
 })
 
-const emit = defineEmits<Emit>()
-const isDialogVisible = ref(false)
-const name = ref('')
+const emit = defineEmits(['update:isDialogVisible'])
+
+const store = useCalculateMarketPlacesStore()
+
+const isDialogVisible = ref(props.isDialogVisible)
+const name_product = ref('')
 const description = ref('')
-const lastName = ref('')
-const email = ref('')
-const password = ref('')
-const age = ref()
-const interest = ref<string[]>([])
-interface Details {
-  name: string
-  description: string
-  lastName: string
-  email: string
-  password: string
-  age: number
-  interest: string[]
-}
-interface Emit {
-  (e: 'submit', value: Details): void
-  (e: 'update:isDialogVisible', value: boolean): void
-}
 
-interface Props {
-  calcDetails?: Details
-  isDialogVisible: boolean
-}
-
-const calcDetails = ref<Details>(structuredClone(toRaw(props.calcDetails)))
-
-watch(props, () => {
-  calcDetails.value = structuredClone(toRaw(props.calcDetails))
+watch(() => props.isDialogVisible, newVal => {
+  isDialogVisible.value = newVal
 })
 
-function formSubmit() {
-  emit('submit', calcDetails.value)
+function closeDialog() {
+  isDialogVisible.value = false
+  emit('update:isDialogVisible', false)
 }
 
-function dialogModelValueUpdate(val: boolean) {
-  emit('update:isDialogVisible', val)
+async function formSubmit() {
+  await store.setProductDetails(name_product.value, description.value)
+  await store.create()
+  closeDialog()
 }
 </script>
 
 <template>
   <VDialog
-    :model-value="props.isDialogVisible"
+    v-model="isDialogVisible"
     :width="$vuetify.display.smAndDown ? 'auto' : 580"
-    @update:model-value="dialogModelValueUpdate"
   >
-    <!-- Dialog Content -->
-    <VCard title="Exportar Calculo">
+    <VCard title="Exportar Cálculo">
       <VCardText>
         <VRow>
-          <VCol
-            cols="12"
-            sm="7"
-            md="12"
-          >
-            <AppTextField
-              v-model="name"
+          <VCol cols="12">
+            <VTextField
+              v-model="name_product"
               label="Nome do Produto"
               placeholder="Vestido"
             />
           </VCol>
-          <VCol
-            cols="12"
-            sm="6"
-            md="12"
-          >
-            <AppTextField
+          <VCol cols="12">
+            <VTextField
               v-model="description"
               label="Descrição"
               placeholder="Vestido de festa"
@@ -88,14 +57,12 @@ function dialogModelValueUpdate(val: boolean) {
           </VCol>
         </VRow>
       </VCardText>
-
       <VCardText class="d-flex justify-end flex-wrap gap-3">
         <VBtn
-          variant="tonal"
           color="secondary"
-          @click="$emit('update:isDialogVisible', false)"
+          @click="closeDialog"
         >
-          fechar
+          Fechar
         </VBtn>
         <VBtn @click="formSubmit">
           Salvar

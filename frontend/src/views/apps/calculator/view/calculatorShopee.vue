@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { VAvatar, VBtn, VCard, VCardText, VChip, VCol, VDivider, VForm, VIcon, VRow, VSelect, VSpacer, VTextField } from 'vuetify/components'
+import { useCalculateMarketPlacesStore } from '../CalculateMarketPlacesStore'
 import { requiredValidator } from '@validators'
+import ExportCalculation from '@/views/apps/calculator/components/dialogs/ExportCalculation.vue'
 
-// Definindo interfaces
+const store = useCalculateMarketPlacesStore()
+
 interface Option {
   title: string
   value: string
 }
-
 interface WidgetData {
   title: string
   value: string
@@ -16,8 +18,8 @@ interface WidgetData {
   color: string
   porcentagem: string
 }
-const isExportCalcDialogVisible = ref(false)
 const refForm = ref<VForm>()
+const isExportCalcDialogVisible = ref(false)
 const programaFreteGratis = ref('sim')
 const comissao = ref(14)
 const aliquotaImposto = ref(0)
@@ -136,6 +138,13 @@ function calcularValores(): void {
   porcentagemNominal.value = (lucroNominal.value / precoVenda.value) * 100
   porcentagemLucro.value = margemLucroPercentual * 100
   porcentagemCapitalGiro.value = (capitalGiro.value / precoVenda.value) * 100
+  store.setProduct(parseFloat(custoProduto.value.toString()), parseFloat(porcentagemLucro.value.toFixed(2)))
+  store.setCalculateMarketPlace(parseFloat(precoVenda.value.toFixed(2)), parseFloat(lucroNominal.value.toFixed(2)), parseFloat(capitalGiro.value.toFixed(2)))
+  store.setParameters(programaFreteGratis.value, parseFloat(comissao.value.toFixed(2)), parseFloat(aliquotaImposto.value.toFixed(2)), parseFloat(outrasTaxasVenda.value.toFixed(2)))
+}
+
+function toggleModal() {
+  isExportCalcDialogVisible.value = !isExportCalcDialogVisible.value;
 }
 </script>
 
@@ -365,7 +374,7 @@ function calcularValores(): void {
             variant="tonal"
             color="secondary"
             prepend-icon="tabler-upload"
-            @click="isExportCalcDialogVisible = !isExportCalcDialogVisible"
+            @click="toggleModal"
           >
             Exportar Calculo
           </VBtn>
@@ -390,5 +399,3 @@ function calcularValores(): void {
   padding-block-end: 1rem;
 }
 </style>
-
-

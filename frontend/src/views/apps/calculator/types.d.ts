@@ -1,5 +1,5 @@
 
-export interface product {
+export interface Product {
    name_product: string;
    description: string;
    total_cost: number;
@@ -15,7 +15,7 @@ export interface Calculation {
 }
 
 export interface Parameters {
-  free_shipping_program: boolean;
+  free_shipping_program: string;
   marketplace_commission: number;
   tax_rate: number;
   other_fees: number;
