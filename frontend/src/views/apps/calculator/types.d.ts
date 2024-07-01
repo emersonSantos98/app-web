@@ -7,14 +7,14 @@ export interface product {
    image: string;
 }
 
-export interface calculation {
+export interface Calculation {
    id_product: number;
    price_sale: number;
    nominal_profit: number;
    working_capital: number;
 }
 
-export interface parameters {
+export interface Parameters {
   free_shipping_program: boolean;
   marketplace_commission: number;
   tax_rate: number;
