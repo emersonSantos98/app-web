@@ -1,9 +1,9 @@
 import axios from '@axios'
 
-import type { AddressParams, OrganizationParams } from '@/views/apps/organization/types'
-import {product} from "@/views/apps/calculator/types";
 
-export async function create(data: product) {
+import {Product} from "@/views/apps/calculator/types";
+
+export async function create(data: Product) {
   try {
     return await axios.post('product/create', data)
   }
@@ -29,7 +29,7 @@ export async function findOne() {
   }
 }
 
-export async function update(data: OrganizationParams) {
+export async function update(data: Product) {
   try {
     return await axios.put('product/update', data)
   }
@@ -38,7 +38,7 @@ export async function update(data: OrganizationParams) {
   }
 }
 
-export async function remove(data: OrganizationParams) {
+export async function remove(data: Product) {
   try {
     return await axios.delete('product/delete', { data })
   }

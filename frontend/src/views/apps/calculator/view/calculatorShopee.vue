@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { VAvatar, VBtn, VCard, VCardText, VChip, VCol, VDivider, VForm, VIcon, VRow, VSelect, VSpacer, VTextField } from 'vuetify/components'
 import { useCalculateMarketPlacesStore } from '../CalculateMarketPlacesStore'
+
 import { requiredValidator } from '@validators'
 import ExportCalculation from '@/views/apps/calculator/components/dialogs/ExportCalculation.vue'
 

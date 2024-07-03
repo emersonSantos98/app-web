@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, ref } from 'vue'
 import { useCalculateMarketPlacesStore } from '../../CalculateMarketPlacesStore'
+import { tableCalcStore } from '../table/tableCalcStore'
 
+const storeCalc = tableCalcStore()
 const props = defineProps({
   isDialogVisible: {
     type: Boolean,
@@ -30,6 +32,7 @@ async function formSubmit() {
   await store.setProductDetails(name_product.value, description.value)
   await store.create()
   closeDialog()
+  storeCalc.fetchTableData()
 }
 </script>
 

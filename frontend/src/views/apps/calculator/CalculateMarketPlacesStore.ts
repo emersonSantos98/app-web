@@ -1,11 +1,9 @@
 import { defineStore } from 'pinia'
 import Notifier from '@core/utils/Notifier'
-import { useAppLayoutStore } from '@/store/appLayout'
 import { create } from '@/api/Calculator/product.client'
 import type { Calculation, Parameters, Product } from '@/views/apps/calculator/types'
 
 const notifier = new Notifier()
-const appLayout = useAppLayoutStore()
 export const useCalculateMarketPlacesStore = defineStore('CalculateMarketPlacesStore', {
   state: () => ({
     loading: false,
@@ -65,3 +63,4 @@ export const useCalculateMarketPlacesStore = defineStore('CalculateMarketPlacesS
   },
 
 })
+
