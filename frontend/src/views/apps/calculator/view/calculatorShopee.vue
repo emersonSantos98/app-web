@@ -78,19 +78,19 @@ function primeiraCalculo(valor: number): number {
 }
 
 function segundaCalculo(valor: number): number {
-  return (valor + 3) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(comissao.value) - calcularPorcentagem(margemLucro.value) - calcularPorcentagem(outrasTaxasVenda.value))
+  return (valor + 4) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(comissao.value) - calcularPorcentagem(margemLucro.value) - calcularPorcentagem(outrasTaxasVenda.value))
 }
 
 function terceiraCalculo(valor: number): number {
-  return (valor + 3 + 100) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(margemLucro.value) - calcularPorcentagem(outrasTaxasVenda.value))
+  return (valor + 4 + 100) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(margemLucro.value) - calcularPorcentagem(outrasTaxasVenda.value))
 }
 
 function quartaCalculo(valor: number): number {
-  return (valor + 3) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(comissao.value) - calcularPorcentagem(margemLucro.value) - 0.06 - calcularPorcentagem(outrasTaxasVenda.value))
+  return (valor + 4) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(comissao.value) - calcularPorcentagem(margemLucro.value) - 0.06 - calcularPorcentagem(outrasTaxasVenda.value))
 }
 
 function quintaCalculo(valor: number): number {
-  return (valor + 3 + 100) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(margemLucro.value) - calcularPorcentagem(outrasTaxasVenda.value))
+  return (valor + 4 + 100) / (1 - calcularPorcentagem(aliquotaImposto.value) - calcularPorcentagem(margemLucro.value) - calcularPorcentagem(outrasTaxasVenda.value))
 }
 
 function calcularValores(): void {
@@ -151,8 +151,20 @@ function toggleModal() {
 
 <template>
   <div>
+    <div>
+        <VIcon
+          size="50"
+          color="warning"
+          class="rounded-0"
+        >
+          tabler-brand-shopee
+        </VIcon>
+
+      <span class="ms-1 text-no-wrap  font-weight-black "> Calculadora de Prço Shopee </span>
+    </div>
+
     <!-- 👉 widgets -->
-    <VCard class="mb-6">
+    <VCard class="mb-6 mt-2">
       <VCardText>
         <VRow class="justify-center">
           <template
