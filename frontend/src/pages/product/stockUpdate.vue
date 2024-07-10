@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import TableListProduct from '@/views/apps/product/components/table/tableListProduct.vue'
+import StockView from '@/views/apps/product/view/stockView.vue'
 </script>
 
 <template>
   <div>
-    <TableListProduct />
+    <StockView />
   </div>
 </template>
 
 <style scoped lang="scss">
 
 </style>
-
 <route lang="yaml">
 meta:
   action: read

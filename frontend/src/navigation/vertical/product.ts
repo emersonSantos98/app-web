@@ -11,7 +11,7 @@ export default [
       },
       {
         title: 'Atualizar Instock',
-        to: 'permission-roles-permissions',
+        to: 'product-stockUpdate',
         action: 'read',
         subject: 'Auth',
       },

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, ref } from 'vue'
 import { useCalculateMarketPlacesStore } from '../../CalculateMarketPlacesStore'
-import { tableListStore } from '../table/tableListStore'
+import { tableListProductStore } from '../table/./tableListProductStore'
 
-const storeCalc = tableListStore()
+const storeCalc = tableListProductStore()
 const props = defineProps({
   isDialogVisible: {
     type: Boolean,

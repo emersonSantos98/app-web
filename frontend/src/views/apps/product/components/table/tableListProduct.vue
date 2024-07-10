@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { VAvatar, VCard, VCardText, VIcon, VTable } from 'vuetify/components'
 import { ref, watchEffect } from 'vue'
-import type { Calculation } from '../../types'
-import { tableListStore } from './tableListStore'
+import type { Product } from '../../types'
+import { tableListProductStore } from '././tableListProductStore'
 
-const calculos = ref<Calculation[]>([])
-const store = tableListStore()
+const products = ref<Product[]>([])
+const store = tableListProductStore()
+
+store.fetchTableData()
 
 watchEffect(() => {
-  calculos.value = store.tableData
+  products.value = store.tableProduct
 })
 </script>
 
@@ -19,24 +21,23 @@ watchEffect(() => {
         <thead>
           <tr>
             <th>
-              data calculo
+              Produto
             </th>
             <th>
               preço de venda
             </th>
             <th>
-              lucro nominal
+              Estoque
             </th>
             <th>
-              capital de giro
+               data de cadastro
             </th>
           </tr>
         </thead>
-
         <tbody>
           <tr
-            v-for="item in calculos"
-            :key="item.id_product"
+            v-for="item in products"
+            :key="item.id"
           >
             <td>
               <VAvatar
@@ -49,10 +50,10 @@ watchEffect(() => {
                   color="success"
                   class="rounded-0"
                 >
-                  tabler-calendar-week
+                  tabler-box-seam
                 </VIcon>
               </VAvatar>
-              <span class="ms-1 text-no-wrap"> {{ item.date_calculo }}</span>
+              <span class="ms-1 text-no-wrap"> {{ item.name_product }}</span>
             </td>
             <Td>
               <VAvatar
@@ -68,7 +69,7 @@ watchEffect(() => {
                   tabler-currency-real
                 </VIcon>
               </VAvatar>
-              <span class="ms-1 text-no-wrap"> {{ item.price_sale }}</span>
+              <span class="ms-1 text-no-wrap"> {{ item.total_cost }}</span>
             </Td>
             <Td>
               <VAvatar
@@ -81,10 +82,10 @@ watchEffect(() => {
                   color="success"
                   class="rounded-0"
                 >
-                  tabler-premium-rights
+                  tabler-packages
                 </VIcon>
               </VAvatar>
-              <span class="ms-1 text-no-wrap"> {{ item.nominal_profit }}</span>
+              <span class="ms-1 text-no-wrap"> {{ item.generalStock }}</span>
             </Td>
             <Td>
               <VAvatar
@@ -97,10 +98,10 @@ watchEffect(() => {
                   color="success"
                   class="rounded-0"
                 >
-                  tabler-shopping-cart
+                  tabler-calendar-week
                 </VIcon>
               </VAvatar>
-              <span class="ms-1 text-no-wrap"> {{ item.working_capital }}</span>
+              <span class="ms-1 text-no-wrap"> {{ item.created_at }}</span>
             </Td>
           </tr>
         </tbody>
