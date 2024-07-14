@@ -1,8 +1,13 @@
+// types.d.ts
+export interface Variation {
+  size: string
+  color: string
+  stock: number
+  barcode: string
+}
 
-export interface Product {
-   name_product: string;
-   description: string;
-   total_cost: number;
-   profit_margin: number;
-   image: string;
+export interface ProductData {
+  name_product: string
+  description: string
+  variations: Variation[]
 }

@@ -1,8 +1,7 @@
 import axios from '@axios'
 
-import type { Product } from '@/views/apps/product/types'
 
-export async function create(data: Product) {
+export async function create(data: any ) {
   try {
     return await axios.post('product/create', data)
   }
@@ -28,7 +27,7 @@ export async function findOne() {
   }
 }
 
-export async function update(data: Product) {
+export async function update(data) {
   try {
     return await axios.put('product/update', data)
   }
@@ -37,9 +36,9 @@ export async function update(data: Product) {
   }
 }
 
-export async function remove(data: Product) {
+export async function remove(id: number) {
   try {
-    return await axios.delete('product/delete', { data })
+    return await axios.delete(`product/delete/${id}`)
   }
   catch (err) {
     throw new Error(err.message)

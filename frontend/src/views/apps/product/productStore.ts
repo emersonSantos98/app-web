@@ -1,66 +1,39 @@
+// productStore.ts
 import { defineStore } from 'pinia'
+import type { ProductData } from './types'
 import Notifier from '@core/utils/Notifier'
-import { create } from '@/api/Calculator/product.client'
-import type { Calculation, Parameters, Product } from '@/views/apps/calculator/types'
+import { create } from '@/api/Product/product.client'
 
 const notifier = new Notifier()
-export const useCalculateMarketPlacesStore = defineStore('CalculateMarketPlacesStore', {
+export const useProductStore = defineStore('productStore', {
   state: () => ({
     loading: false,
-    product: {} as Product,
-    calculateMarketPlace: {} as Calculation,
-    parameters: {} as Parameters,
   }),
 
   actions: {
-    create: async function () {
+    async create(data: ProductData) {
       try {
         this.loading = true
 
         const formData = new FormData()
 
-        formData.append('name_product', this.product.name_product)
-        formData.append('description', this.product.description)
-        formData.append('total_cost', String(this.product.total_cost))
-        formData.append('profit_margin', String(this.product.profit_margin))
-        formData.append('price_sale', String(this.calculateMarketPlace.price_sale))
-        formData.append('nominal_profit', String(this.calculateMarketPlace.nominal_profit))
-        formData.append('working_capital', String(this.calculateMarketPlace.working_capital))
+        formData.append('name_product', data.name_product)
+        formData.append('description', data.description)
+        formData.append('variations', JSON.stringify(data.variations))
 
         const response = await create(formData)
 
         if (response.status === 201)
-          notifier.success('Calculo exportado com sucesso')
+          notifier.success('Produto criado com sucesso')
         else
-          notifier.error('Erro ao exportar calculo')
-      } catch (err) {
-        notifier.error(`Error creating product: ${err.message}`)
-      } finally {
+          notifier.error('Erro ao criar produto')
+      }
+      catch (err) {
+        notifier.error(`Erro ao criar produto: ${err.message}`)
+      }
+      finally {
         this.loading = false
       }
     },
-
-    setProduct(totalCost: number, profitMargin: number) {
-      this.product.total_cost = totalCost
-      this.product.profit_margin = profitMargin
-    },
-    setCalculateMarketPlace(priceSale: number, nominalProfit: number, workingCapital: number) {
-      this.calculateMarketPlace.price_sale = priceSale
-      this.calculateMarketPlace.nominal_profit = nominalProfit
-      this.calculateMarketPlace.working_capital = workingCapital
-    },
-    setParameters(freeShippingProgram: string, marketplaceCommission: number, taxRate: number, otherFees: number) {
-      this.parameters.free_shipping_program = String(freeShippingProgram)
-      this.parameters.marketplace_commission = marketplaceCommission
-      this.parameters.tax_rate = taxRate
-      this.parameters.other_fees = otherFees
-    },
-    setProductDetails(nameProduct: string, description: string) {
-      this.product.name_product = nameProduct
-      this.product.description = description
-    },
-
   },
-
 })
-

@@ -13,7 +13,7 @@ export const useCalculateMarketPlacesStore = defineStore('CalculateMarketPlacesS
   }),
 
   actions: {
-    create: async function () {
+    async create() {
       try {
         this.loading = true
 
@@ -33,9 +33,11 @@ export const useCalculateMarketPlacesStore = defineStore('CalculateMarketPlacesS
           notifier.success('Calculo exportado com sucesso')
         else
           notifier.error('Erro ao exportar calculo')
-      } catch (err) {
+      }
+      catch (err) {
         notifier.error(`Error creating product: ${err.message}`)
-      } finally {
+      }
+      finally {
         this.loading = false
       }
     },
@@ -63,4 +65,3 @@ export const useCalculateMarketPlacesStore = defineStore('CalculateMarketPlacesS
   },
 
 })
-
