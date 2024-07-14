@@ -9,9 +9,9 @@ export async function create(data: any ) {
     throw new Error(err.message)
   }
 }
-export async function findAll() {
+export async function findAll(filter: any) {
   try {
-    return await axios.get('product/findAll')
+    return await axios.get('product/findAll', { params: filter })
   }
   catch (err) {
     throw new Error(err.message)

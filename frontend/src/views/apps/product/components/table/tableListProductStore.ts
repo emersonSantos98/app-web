@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
 import Notifier from '@core/utils/Notifier'
-import {findAll, remove} from '@/api/Product/product.client'
+import { findAll, remove } from '@/api/Product/product.client'
 
 const notifier = new Notifier()
 export const tableListProductStore = defineStore('tableListProductStore', {
   state: () => ({
     loading: false,
     tableProduct: [],
+    filter: {},
   }),
 
   actions: {
@@ -14,7 +15,8 @@ export const tableListProductStore = defineStore('tableListProductStore', {
       try {
         this.loading = true
 
-        const response = await findAll()
+        const response = await findAll(this.filter)
+
         this.tableProduct = response.data.data
       }
       catch (err) {
@@ -43,5 +45,12 @@ export const tableListProductStore = defineStore('tableListProductStore', {
         this.loading = false
       }
     },
+
+    setFilter(filter: any) {
+      this.filter = { ...this.filter, ...filter }
+    },
+    clearFilter() {
+      this.filter = {}
+    }
   },
 })

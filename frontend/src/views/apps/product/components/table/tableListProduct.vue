@@ -11,8 +11,6 @@ const store = tableListProductStore()
 const deleteDialogVisible = ref(false)
 const itemToDelete = ref<ProductData | null>(null)
 
-store.fetchTableData()
-
 watchEffect(() => {
   products.value = store.tableProduct
 })
@@ -22,9 +20,9 @@ function openDeleteDialog(item: ProductData) {
   deleteDialogVisible.value = true
 }
 
-function handleDeleteConfirmed(itemId: number) {
-  store.deleteProduct(itemId)
-  store.fetchTableData()
+async function handleDeleteConfirmed(itemId: number) {
+ await store.deleteProduct(itemId)
+ await store.fetchTableData()
 }
 
 // Headers
@@ -119,7 +117,7 @@ const headers = [
       <template #item.actions="{ item }">
         <div class="d-flex gap-1">
           <IconBtn
-            :to="{ name: 'product-details-id', params: { id: item.props.title.id} }"
+            :to="{ name: 'product-details-id', params: { id: item.props.title.id } }"
             @click.stop
           >
             <VIcon

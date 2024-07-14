@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { watchEffect } from 'vue'
-import CardViewDetails from "@/views/apps/product/view/details/cardViewDetails.vue";
+import CardViewDetails from '@/views/apps/product/view/details/cardViewDetails.vue'
+import { tableListProductStore } from '@/views/apps/product/components/table/tableListProductStore'
 
 const route = useRoute('product-details-id')
+const store = tableListProductStore()
+
+store.setFilter({ id: route.params.id })
+
+function clearFilter() {
+  store.clearFilter()
+}
 
 watchEffect(async () => {
-  console.log('route', route.params.id)
+  await store.fetchTableData()
 })
 </script>
 
@@ -16,6 +24,7 @@ watchEffect(async () => {
       <VBtn
         color="primary"
         :to="{ name: 'product' }"
+        @click="clearFilter"
       >
         <VIcon
           start
@@ -24,7 +33,7 @@ watchEffect(async () => {
         Voltar
       </VBtn>
     </div>
-    <card-view-details />
+    <CardViewDetails />
   </div>
 </template>
 

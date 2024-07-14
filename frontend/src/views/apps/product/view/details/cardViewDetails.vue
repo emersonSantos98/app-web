@@ -1,24 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { VCard, VCardText, VCardTitle, VCol, VExpansionPanel, VExpansionPanelText, VExpansionPanelTitle, VExpansionPanels, VIcon, VRow, VDivider } from 'vuetify/components'
+import { ref, watchEffect } from 'vue'
+import { VCard, VCardText, VCardTitle, VDivider, VExpansionPanel, VExpansionPanelText, VExpansionPanelTitle, VExpansionPanels } from 'vuetify/components'
+import { tableListProductStore } from '../../components/table/tableListProductStore'
 
-// Simulated product data
-const product = ref({
-  name_product: "Conjunto Lanzinha plusize",
-  description: "Conjunto - tecido lanzinha - grade M - G",
-  total_cost: "NaN",
-  generalStock: 0,
-  created_at: "14 Jul 2024",
-  mappedVariations: {
-    "Preto": { grade: ["M", "G"], stock: 0, barcode: "", productId: 35 },
-    "Azul Marinho": { grade: ["M", "G"], stock: 0, barcode: "", productId: 35 },
-    "Laranja Queimado": { grade: ["M", "G"], stock: 0, barcode: "", productId: 35 },
-    "Verde Militar": { grade: ["M", "G"], stock: 0, barcode: "", productId: 35 }
-  },
-  calculations: [
-    { id: 17, id_user: 2, id_product: 19, price_sale: "27", nominal_profit: "51", working_capital: "20", date_calculo: "2024-07-06T00:00:00.000Z", createdAt: "2024-07-06T18:26:14.000Z", updatedAt: "2024-07-06T18:26:14.000Z" }
-  ]
-});
+const store = tableListProductStore()
+
+const product = ref({})
+
+watchEffect(() => {
+  product.value = store.tableProduct[0]
+})
 </script>
 
 <template>
@@ -56,7 +47,11 @@ const product = ref({
 
     <VCardText>
       <h2>Calculations</h2>
-      <div v-for="calc in product.calculations" :key="calc.id" class="calculation-item">
+      <div
+        v-for="calc in product.calculations"
+        :key="calc.id"
+        class="calculation-item"
+      >
         <p><strong>Price Sale:</strong> {{ calc.price_sale }}</p>
         <p><strong>Nominal Profit:</strong> {{ calc.nominal_profit }}</p>
         <p><strong>Working Capital:</strong> {{ calc.working_capital }}</p>

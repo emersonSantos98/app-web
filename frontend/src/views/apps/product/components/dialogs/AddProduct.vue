@@ -2,9 +2,11 @@
 import { VDivider } from 'vuetify/components'
 import { ref } from 'vue'
 import { useProductStore } from '../../productStore'
+import { tableListProductStore } from '../table/tableListProductStore'
 import type { ProductData, Variation } from '../../types'
 
 const store = useProductStore()
+const tableStore = tableListProductStore()
 const isDialogVisible = ref(false)
 const name_product = ref('')
 const description = ref('')
@@ -73,22 +75,34 @@ async function submit() {
   await removeObjectEmpty()
   await mapVariations()
   isDialogVisible.value = false
+
   const productData: ProductData = {
     name_product: name_product.value,
     description: description.value,
     variations: variations.value,
   }
+
   await store.create(productData)
   await clearFields()
+  await tableStore.fetchTableData()
 }
 </script>
 
 <template>
-  <VDialog v-model="isDialogVisible" max-width="600">
+  <VDialog
+    v-model="isDialogVisible"
+    max-width="600"
+  >
     <!-- Dialog Activator -->
     <template #activator="{ props }">
-      <VBtn color="primary" v-bind="props">
-        <VIcon start icon="tabler-plus" />
+      <VBtn
+        color="primary"
+        v-bind="props"
+      >
+        <VIcon
+          start
+          icon="tabler-plus"
+        />
         Novo Produto
       </VBtn>
     </template>
@@ -123,9 +137,15 @@ async function submit() {
         <VDivider class="my-4" />
 
         <!-- Variations for Colors -->
-        <div v-for="(variation, index) in colorVariations" :key="index">
+        <div
+          v-for="(variation, index) in colorVariations"
+          :key="index"
+        >
           <VRow>
-            <VCol cols="10" sm="5">
+            <VCol
+              cols="10"
+              sm="5"
+            >
               <VTextField
                 v-model="variation.color"
                 label="Cor"
@@ -135,7 +155,10 @@ async function submit() {
                 @blur="addColorVariation(index)"
               />
             </VCol>
-            <VCol cols="2" class="d-flex align-center">
+            <VCol
+              cols="2"
+              class="d-flex align-center"
+            >
               <VIcon
                 v-if="colorVariations.length > 1"
                 icon="tabler-trash"
@@ -149,9 +172,15 @@ async function submit() {
         <VDivider class="my-4" />
 
         <!-- Variations for Sizes -->
-        <div v-for="(variation, index) in sizeVariations" :key="index">
+        <div
+          v-for="(variation, index) in sizeVariations"
+          :key="index"
+        >
           <VRow>
-            <VCol cols="10" sm="5">
+            <VCol
+              cols="10"
+              sm="5"
+            >
               <VTextField
                 v-model="variation.size"
                 label="Tamanho"
@@ -161,7 +190,10 @@ async function submit() {
                 @blur="addSizeVariation(index)"
               />
             </VCol>
-            <VCol cols="2" class="d-flex align-center">
+            <VCol
+              cols="2"
+              class="d-flex align-center"
+            >
               <VIcon
                 v-if="sizeVariations.length > 1"
                 icon="tabler-trash"
@@ -176,7 +208,11 @@ async function submit() {
 
         <!-- GTIN (EAN) -->
         <VRow title="GTIN (EAN)">
-          <VCol cols="12" sm="4" md="5">
+          <VCol
+            cols="12"
+            sm="4"
+            md="5"
+          >
             <VTextField
               v-model="barcode"
               label="GTIN (EAN)"
@@ -190,7 +226,11 @@ async function submit() {
       </VCardText>
 
       <VCardText class="d-flex justify-end flex-wrap gap-3">
-        <VBtn variant="tonal" color="secondary" @click="isDialogVisible = false">
+        <VBtn
+          variant="tonal"
+          color="secondary"
+          @click="isDialogVisible = false"
+        >
           Cancelar
         </VBtn>
         <VBtn @click="submit">
