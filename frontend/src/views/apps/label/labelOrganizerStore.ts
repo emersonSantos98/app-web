@@ -17,10 +17,10 @@ export const useLabelOrganizerStore = defineStore('LabelOrganizerStore', {
         const url = URL.createObjectURL(response)
 
         this.generatedLabelUrl = url
-        notifier.showSuccess('Shipping labels generated successfully')
+        notifier.success('Shipping labels generated successfully')
       }
       catch (err) {
-        notifier.showError(err.message)
+        notifier.error(err.message)
       }
       finally {
         this.loading = false

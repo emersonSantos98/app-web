@@ -57,7 +57,6 @@ async function generateShippingLabel() {
   const formData = new FormData()
 
   formData.append('file', fileData.value[0].file)
-
   await store.generateShippingLabels(formData)
 }
 </script>

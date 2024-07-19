@@ -5,11 +5,14 @@ import { ref, watchEffect } from 'vue'
 import type { ProductData } from '../../types'
 import DeleteProduct from '../dialogs/DeleteProduct.vue'
 import { tableListProductStore } from '././tableListProductStore'
+import GenereteQrCode from '@/views/apps/product/components/dialogs/GenereteQrCode.vue'
 
 const products = ref<ProductData[]>([])
 const store = tableListProductStore()
 const deleteDialogVisible = ref(false)
+const openQrCodeDialog = ref(false)
 const itemToDelete = ref<ProductData | null>(null)
+const itemToQrCode = ref<ProductData | null>(null)
 
 watchEffect(() => {
   products.value = store.tableProduct
@@ -20,9 +23,14 @@ function openDeleteDialog(item: ProductData) {
   deleteDialogVisible.value = true
 }
 
+function openQrDialog(item: ProductData) {
+  itemToQrCode.value = item
+  openQrCodeDialog.value = true
+}
+
 async function handleDeleteConfirmed(itemId: number) {
- await store.deleteProduct(itemId)
- await store.fetchTableData()
+  await store.deleteProduct(itemId)
+  await store.fetchTableData()
 }
 
 // Headers
@@ -117,6 +125,14 @@ const headers = [
       <template #item.actions="{ item }">
         <div class="d-flex gap-1">
           <IconBtn
+            @click.stop="openQrDialog(item)"
+          >
+            <VIcon
+              icon="tabler-qrcode"
+              color="secondary"
+            />
+          </IconBtn>
+          <IconBtn
             :to="{ name: 'product-details-id', params: { id: item.props.title.id } }"
             @click.stop
           >
@@ -154,6 +170,10 @@ const headers = [
       v-model:isDialogVisible="deleteDialogVisible"
       :item="itemToDelete"
       @confirm-delete="handleDeleteConfirmed"
+    />
+    <GenereteQrCode
+      :item="itemToQrCode"
+      v-model:isDialogVisible="openQrCodeDialog"
     />
   </div>
 </template>
