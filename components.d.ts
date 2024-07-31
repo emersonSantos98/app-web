@@ -17,9 +17,9 @@ declare module '@vue/runtime-core' {
     AppCardActions: typeof import('./src/@core/components/AppCardActions.vue')['default']
     AppCardCode: typeof import('./src/@core/components/AppCardCode.vue')['default']
     AppCombobox: typeof import('./src/@core/components/app-form-elements/AppCombobox.vue')['default']
-    AppDateTimePicker: typeof import('./src/@core/components/app-form-elements/AppDateTimePicker.vue')['default']
+    AppDateTimePicker: typeof import('./src/@core/components/AppDateTimePicker.vue')['default']
     AppDrawerHeaderSection: typeof import('./src/@core/components/AppDrawerHeaderSection.vue')['default']
-    AppOtpInput: typeof import('./src/@core/components/app-form-elements/AppOtpInput.vue')['default']
+    AppOtpInput: typeof import('./src/@core/components/AppOtpInput.vue')['default']
     AppPricing: typeof import('./src/@core/components/AppPricing.vue')['default']
     AppSearchHeader: typeof import('./src/@core/components/AppSearchHeader.vue')['default']
     AppSelect: typeof import('./src/@core/components/app-form-elements/AppSelect.vue')['default']
@@ -50,8 +50,10 @@ declare module '@vue/runtime-core' {
     Shortcuts: typeof import('./src/@core/components/Shortcuts.vue')['default']
     TheCustomizer: typeof import('./src/@core/components/TheCustomizer.vue')['default']
     ThemeSwitcher: typeof import('./src/@core/components/ThemeSwitcher.vue')['default']
+    TiptapEditor: typeof import('./src/@core/components/TiptapEditor.vue')['default']
     TwoFactorAuthDialog: typeof import('./src/components/dialogs/TwoFactorAuthDialog.vue')['default']
     UserInfoEditDialog: typeof import('./src/@core/components/UserInfoEditDialog.vue')['default']
     UserUpgradePlanDialog: typeof import('./src/@core/components/UserUpgradePlanDialog.vue')['default']
+    Vuecreditcard: typeof import('./src/components/vuecreditcard.vue')['default']
   }
 }
