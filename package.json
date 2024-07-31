@@ -10,9 +10,6 @@
     "lint": "eslint . -c .eslintrc.js --fix --rulesdir eslint-internal-rules/ --ext .ts,.js,.vue,.tsx,.jsx",
     "build:icons": "tsc -b src/@iconify && node src/@iconify/build-icons.js"
   },
-  "engines": {
-    "node": "20.6.0"
-  },
   "dependencies": {
     "@casl/ability": "6.5.0",
     "@casl/vue": "2.2.1",
@@ -68,7 +65,7 @@
     "@iconify/vue": "4.1.1",
     "@intlify/unplugin-vue-i18n": "0.10.0",
     "@types/jsonwebtoken": "^9.0.2",
-    "@types/node": "20.6.0",
+    "@types/node": "18.16.3",
     "@types/vue-the-mask": "^0.11.2",
     "@types/webfontloader": "1.6.35",
     "@typescript-eslint/eslint-plugin": "5.59.1",
