@@ -3,6 +3,7 @@ import { abilitiesPlugin } from '@casl/vue'
 import { createPinia } from 'pinia'
 import { createApp, markRaw } from 'vue'
 import VueTheMask from 'vue-the-mask'
+
 import App from '@/App.vue'
 import ability from '@/plugins/casl/ability'
 import i18n from '@/plugins/i18n'
@@ -14,16 +15,13 @@ import router from '@/router'
 import '@core/scss/template/index.scss'
 import '@styles/styles.scss'
 import { useAuthStore } from '@/store/auth'
-import index from '/src/pages/index.vue'
+import filtersGlobal from '@core/utils/filters.global'
 
 loadFonts()
 
 // Create vue app
 const app = createApp(App)
 const pinia = createPinia()
-import VueTheMask from 'vue-the-mask'
-import filtersGlobal from "@core/utils/filters.global";
-
 
 // Use plugins
 pinia.use(({ store }) => { store.router = markRaw(router) })
@@ -40,9 +38,8 @@ app.use(abilitiesPlugin, ability, {
 })
 app.use(VueTheMask)
 
-app.use(Toast, optionsToast);
-if(localStorage.getItem('accessToken')) {
-
+app.use(Toast, optionsToast)
+if (localStorage.getItem('accessToken')) {
   (async () => {
     const auth = useAuthStore()
     try {
