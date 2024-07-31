@@ -10,6 +10,9 @@
     "lint": "eslint . -c .eslintrc.js --fix --rulesdir eslint-internal-rules/ --ext .ts,.js,.vue,.tsx,.jsx",
     "build:icons": "tsc -b src/@iconify && node src/@iconify/build-icons.js"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@casl/ability": "6.5.0",
     "@casl/vue": "2.2.1",
