@@ -1,4 +1,4 @@
-import {IRoles} from "@/modules/AccessControl/list/Roles/models/types";
+import type { IRoles } from '@/modules/AccessControl/list/Roles/models/types'
 
 export interface ICustomer {
   id: number
@@ -13,8 +13,6 @@ export interface ICustomer {
   updatedAt: string
   createdAt: string
 }
-
-
 
 export interface IUser {
   id?: number
